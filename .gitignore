@@ -1,0 +1,21 @@
+# Editor / OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Local runtime / build products
+node_modules/
+__pycache__/
+.pytest_cache/
+*.pyc
+*.crx
+*.pem
+*.key
+*.log
+*.zip
+
+dist/
+build/
+coverage/

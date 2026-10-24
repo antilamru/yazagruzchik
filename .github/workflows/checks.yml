@@ -1,0 +1,23 @@
+name: Проверка расширения
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Получить исходники
+        uses: actions/checkout@v4
+      - name: Установить Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Проверить манифест
+        run: node -e "const m=require('./manifest.json'); if(m.manifest_version!==3||m.name!=='Язагрузчик') process.exit(1);"
+      - name: Тесты
+        run: |
+          node tests/test.js
+          node tests/test-pikabu.js

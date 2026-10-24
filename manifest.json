@@ -1,0 +1,57 @@
+{
+  "manifest_version": 3,
+  "name": "Язагрузчик",
+  "short_name": "Язагрузчик",
+  "version": "1.1.0",
+  "description": "Скачивание видео из плееров YapFiles на ЯПлакалъ. Отдельная кнопка у каждого ролика, выбор качества SD/HD.",
+  "author": "Antilam <admin@antilam.ru>",
+  "homepage_url": "https://antilam.ru/",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "Язагрузчик — Antilam",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png"
+    }
+  },
+  "permissions": [
+    "downloads"
+  ],
+  "host_permissions": [
+    "*://*.yapfiles.ru/*",
+    "*://pikabu.ru/*",
+    "*://*.pikabu.ru/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.yapfiles.ru/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle",
+      "all_frames": true
+    },
+    {
+      "matches": [
+        "*://pikabu.ru/*",
+        "*://*.pikabu.ru/*"
+      ],
+      "js": [
+        "pikabu-content.js"
+      ],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ]
+}
